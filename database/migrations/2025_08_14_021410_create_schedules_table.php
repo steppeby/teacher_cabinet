@@ -12,13 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('schedules', function (Blueprint $table) {
-            $table->id();
-            $table->date('date');
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->string('auditorium');
-            $table->string('group');
-            $table->timestamps();
+            $t->id();
+            $t->date('date');
+            $t->time('start_time');
+            $t->time('end_time');
+
+            $t->foreignId('group_id')->nullable()->constrained();
+            $t->foreignId('teacher_id')->nullable()->constrained('users');
+            $t->foreignId('room_id')->nullable()->constrained();
+
+            $t->string('title');        // название пары / предмет
+            $t->string('description')->nullable(); // опционально: тема занятия
+            $t->timestamps();
+
+            $t->index(['date']);
+            $t->index(['teacher_id', 'date']);
+            $t->index(['group_id', 'date']);
         });
     }
 

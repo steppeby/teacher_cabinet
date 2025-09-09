@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Редактировать расписание</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
     <h1>Редактировать расписание</h1>
 
     @if($errors->any())
-        <div style="color:red;">
+        <div style="color:red; margin-bottom:10px;">
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -17,28 +14,35 @@
         </div>
     @endif
 
-    <form action="{{ route('schedules.update', $schedule) }}" method="POST">
+    <form action="{{ route('schedules.update', $schedule) }}" method="POST" style="display:flex;flex-direction:column;gap:10px;max-width:400px;">
         @csrf
         @method('PUT')
+
         <label>Дата:
             <input type="date" name="date" value="{{ old('date', $schedule->date) }}">
-        </label><br><br>
+        </label>
+
         <label>Начало:
             <input type="time" name="start_time" value="{{ old('start_time', $schedule->start_time) }}">
-        </label><br><br>
+        </label>
+
         <label>Конец:
             <input type="time" name="end_time" value="{{ old('end_time', $schedule->end_time) }}">
-        </label><br><br>
+        </label>
+
         <label>Аудитория:
             <input type="text" name="auditorium" value="{{ old('auditorium', $schedule->auditorium) }}">
-        </label><br><br>
+        </label>
+
         <label>Группа:
             <input type="text" name="group" value="{{ old('group', $schedule->group) }}">
-        </label><br><br>
+        </label>
+
         <button type="submit">💾 Обновить</button>
     </form>
 
-    <br>
-    <a href="{{ route('schedules.index') }}">⬅ Назад</a>
-</body>
-</html>
+    <div style="margin-top:15px;">
+        <a href="{{ route('schedules.index') }}">⬅ Назад</a>
+    </div>
+</div>
+@endsection

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         User::firstOrCreate([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'password' => bcrypt('123'),
         ]);
 		$this->call(RoleSeeder::class);
     }

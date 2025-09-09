@@ -26,7 +26,7 @@ class ScheduleController extends Controller
             now()->startOfWeek()->addWeeks($request->week - 1),
             now()->startOfWeek()->addWeeks($request->week)->subDay()
         ]);
-    }
+        }
         // Фильтрация по месяцу
         if ($request->filled('month')) {
             $query->whereMonth('date', $request->month);

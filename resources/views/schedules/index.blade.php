@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Расписание</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
     <h1>Список расписаний</h1>
 
     <a href="{{ route('schedules.create') }}">➕ Добавить</a> |
@@ -14,7 +11,7 @@
         <p style="color: green">{{ session('success') }}</p>
     @endif
 
-    <table border="1" cellpadding="5">
+    <table border="1" cellpadding="5" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>Дата</th>
@@ -48,5 +45,5 @@
         @endforelse
         </tbody>
     </table>
-</body>
-</html>
+</div>
+@endsection
